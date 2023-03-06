@@ -8,5 +8,6 @@ fetch('https://api.fitbit.com/1/user/-/hrv/date/today/all.json', {
   mode: 'cors'
 })
 .then(response => response.json()) 
-.then(json => console.log(json)); 
+.then(json => console.log(json))
+.catch(error => console.error(error));
 console.log(fetch);
