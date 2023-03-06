@@ -3,8 +3,9 @@ const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRW
 
 fetch('https://api.fitbit.com/1/user/-/hrv/date/today/all.json', {
   method: "GET",
-  headers: {"Authorization": "Bearer " + access_token}
+  headers: {"Authorization": "Bearer " + access_token},
+  cache: 'no-cache',
+  mode: 'cors'
 })
 .then(response => response.json()) 
-.then(json => console.log(json)); 
-console.log(fetch);
+.then(json => console.log(json)); console.log(fetch);
