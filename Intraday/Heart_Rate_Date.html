@@ -21,7 +21,7 @@
             const myList = document.querySelector("ul");
             const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4MjYyMjUwLCJpYXQiOjE2NzgyMzM0NTB9.k4gKXRqpj1wZgWehx5Cd12BIg_QwbpGzbNDWg8fhVU0"
             const aaa = document.getElementById("aaa");
-            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1sec/time/09:00/22:00.json', {
+            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1min/time/09:00/22:00.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
             })

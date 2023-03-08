@@ -30,7 +30,7 @@
                     for (var product of data.hrv) {
                         const brr = document.createElement("br");
                         console.log(product.value);
-                        console.log("len : " + product.value.length);
+                        //console.log("len : " + product.value.length);
                         for (var i = 0; i < product.value.length; i++) {
                             const span = document.createElement("span");
                             const br = document.createElement("br");
@@ -42,8 +42,8 @@
                                                         console.log("coverage : "+product.minutes[i].value.coverage);
                                                         console.log("hf : "+product.minutes[i].value.hf);
                                                         console.log("lf : "+product.minutes[i].value.lf);*/
-                            str += " dailyRmssd : " + product.value[i].dailyRmssd
-                            str += " deepRmssd : " + product.value[i].deepRmssd
+                            str += " dailyRmssd : " + product.value.dailyRmssd
+                            str += " deepRmssd : " + product.value.deepRmssd
 
                             span.textContent = "[" + i + "]" + str;
                             document.body.appendChild(span);

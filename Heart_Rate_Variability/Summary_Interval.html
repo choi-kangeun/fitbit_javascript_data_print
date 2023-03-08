@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1 class="fitbit" id="title">FitBit API Test22</h1>
+    <h1 class="fitbit" id="title">Get HRV Summary by Interval</h1>
 
     <nav class="primary-nav">
         <ul>
@@ -29,29 +29,29 @@
                 .then((data) => {
                     for (var product of data.hrv) {
                         const brr = document.createElement("br");
-                        console.log(product.minutes);
-                        console.log("len : " + product.minutes.length);
-                        for (var i = 0; i < product.minutes.length; i++) {
-                            const span = document.createElement("span");
-                            const br = document.createElement("br");
-                            var str = "";
-                            /*                            console.log(product.minutes[i]);
-                                                        console.log("min : "+product.minutes[i].minute);
-                                                        console.log("value : "+product.minutes[i].value);
-                                                        console.log("rmssd : "+product.minutes[i].value.rmssd);
-                                                        console.log("coverage : "+product.minutes[i].value.coverage);
-                                                        console.log("hf : "+product.minutes[i].value.hf);
-                                                        console.log("lf : "+product.minutes[i].value.lf);*/
-                            str += "rmssd : " + product.minutes[i].value.rmssd;
-                            str += " coverage : " + product.minutes[i].value.coverage
-                            str += " hf : " + product.minutes[i].value.hf
-                            str += " lf : " + product.minutes[i].value.lf
+                        //console.log(product.length);
+                        //console.log("len : " + product.value);
+                        //for (var i = 0; i < 2; i++) {
+                        const span = document.createElement("span");
+                        const br = document.createElement("br");
+                        var str = "";
+                        /*                            console.log(product.minutes[i]);
+                                                    console.log("min : "+product.minutes[i].minute);
+                                                    console.log("value : "+product.minutes[i].value);
+                                                    console.log("rmssd : "+product.minutes[i].value.rmssd);
+                                                    console.log("coverage : "+product.minutes[i].value.coverage);
+                                                    console.log("hf : "+product.minutes[i].value.hf);
+                                                    console.log("lf : "+product.minutes[i].value.lf);*/
+                        str += "dailyRmssd : " + product.value.dailyRmssd;
+                        str += " deepRmssed : " + product.value.deepRmssd;
+                        //str += " hf : " + product.value[i].hf
+                        //str += " lf : " + product.value[i].lf
 
-                            span.textContent = "[" + i + "]" + str;
-                            document.body.appendChild(span);
-                            document.body.appendChild(br);
+                        span.textContent = str;
+                        document.body.appendChild(span);
+                        document.body.appendChild(br);
 
-                        }
+                        //}
                         document.body.appendChild(brr);
 
 
