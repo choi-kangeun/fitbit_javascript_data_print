@@ -27,7 +27,7 @@
             })
                 .then(response => response.json())
                 .then((data) => {
-                    for (var product of data.sleep) {
+                    for (const product of data.sleep) {
                         const brr = document.createElement("br");
                         console.log(product.levels.data);
                         console.log(product.levels.shortData);
@@ -54,12 +54,23 @@
                         span.textContent = str;
                         document.body.appendChild(span);
                         document.body.appendChild(br);
-
                         //}
                         document.body.appendChild(brr);
 
+                        for (var i = 0; i < product.levels.data.length; i++) {
+                            const span = document.createElement("span");
+                            const br = document.createElement("br");
+                            var str = "";
+                            str += "dateTime :" + product.levels.data[i].dateTime;
+                            str += " level :" + product.levels.data[i].level;
+                            str += " seconds :" + product.levels.data[i].seconds;
+                            
+                            span.textContent = "[" + i + "]" + str;
+                            document.body.appendChild(span);
+                            document.body.appendChild(br);
 
 
+                        }
                     }
                 })
                 .catch(console.error);
