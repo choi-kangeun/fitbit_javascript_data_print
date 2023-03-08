@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1 class="fitbit" id="title">FitBit API Test22</h1>
+    <h1 class="fitbit" id="title">Get Sleep Log by Date</h1>
 
     <nav class="primary-nav">
         <ul>
@@ -27,11 +27,13 @@
             })
                 .then(response => response.json())
                 .then((data) => {
-                    for (var product of data.hrv) {
+                    for (var product of data.sleep) {
                         const brr = document.createElement("br");
-                        console.log(product.minutes);
-                        console.log("len : " + product.minutes.length);
-                        for (var i = 0; i < product.minutes.length; i++) {
+                        console.log(product.levels.data);
+                        console.log(product.levels.shortData);
+                        console.log(product.levels.summary);
+                        console.log("len : " + product.levels.data.length);
+                        for (var i = 0; i < product.levels.data.length; i++) {
                             const span = document.createElement("span");
                             const br = document.createElement("br");
                             var str = "";
@@ -42,12 +44,12 @@
                                                         console.log("coverage : "+product.minutes[i].value.coverage);
                                                         console.log("hf : "+product.minutes[i].value.hf);
                                                         console.log("lf : "+product.minutes[i].value.lf);*/
-                            str += "rmssd : " + product.minutes[i].value.rmssd;
-                            str += " coverage : " + product.minutes[i].value.coverage
-                            str += " hf : " + product.minutes[i].value.hf
-                            str += " lf : " + product.minutes[i].value.lf
+                            str += "dateTime : " + product.levels.data.dateTime;
+                            str += " level : " + product.levels.data.level;
+                            str += " seconds : " + product.levels.data.seconds;
+                            //str += " lf : " + product.minutes[i].value.lf
 
-                            span.textContent = "[" + i + "]" + str;
+                            span.textContent = str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
 

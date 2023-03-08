@@ -31,7 +31,7 @@
                         const brr = document.createElement("br");
                         console.log(product.value);
                         //console.log("len : " + product.value.length);
-                        for (var i = 0; i < product.value.length; i++) {
+                        //for (var i = 0; i < product.value.length; i++) {
                             const span = document.createElement("span");
                             const br = document.createElement("br");
                             var str = "";
@@ -45,11 +45,11 @@
                             str += " dailyRmssd : " + product.value.dailyRmssd
                             str += " deepRmssd : " + product.value.deepRmssd
 
-                            span.textContent = "[" + i + "]" + str;
+                            span.textContent = str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
 
-                        }
+                        //}
                         document.body.appendChild(brr);
 
 

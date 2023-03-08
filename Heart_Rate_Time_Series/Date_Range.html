@@ -28,9 +28,9 @@
                 .then((data) => {
                     for (var product of data.activities-heart) {
                         const brr = document.createElement("br");
-                        console.log(product.dateTime);
-                        console.log("len : " + product.dateTime.length);
-                        for (var i = 0; i < product.dateTime.length; i++) {
+                        console.log(product.value);
+                        //console.log("len : " + product.value.length);
+                        //for (var i = 0; i < product.dateTime.length; i++) {
                             const span = document.createElement("span");
                             const br = document.createElement("br");
                             var str = "";
@@ -41,16 +41,16 @@
                                                         console.log("coverage : "+product.minutes[i].value.coverage);
                                                         console.log("hf : "+product.minutes[i].value.hf);
                                                         console.log("lf : "+product.minutes[i].value.lf);*/
-                            str += "rmssd : " + product.dateTime[i].value.heartRateZones;
-                            str += " coverage : " + product.dateTime[i].value.restingHeartRate
-                            str += " hf : " + product.dateTime[i].value.hf
-                            str += " lf : " + product.dateTime[i].value.lf
+                            str += "rmssd : " + product.value.heartRateZones;
+                            str += " coverage : " + product.value.restingHeartRate
+                            str += " hf : " + product.value.hf
+                            str += " lf : " + product.value.lf
 
-                            span.textContent = "[" + i + "]" + str;
+                            span.textContent = str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
 
-                        }
+                        //}
                         document.body.appendChild(brr);
 
 
