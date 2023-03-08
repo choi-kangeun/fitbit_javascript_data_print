@@ -68,9 +68,26 @@
                             span.textContent = "[" + i + "]" + str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
+                            document.body.appendChild(brr);
 
 
                         }
+                        
+                        for (var i = 0; i < product.levels.shortData.length; i++) {
+                            const span = document.createElement("span");
+                            const br = document.createElement("br");
+                            var str = "";
+                            str += "dateTime :" + product.levels.shortData[i].dateTime;
+                            str += " level :" + product.levels.shortData[i].level;
+                            str += " seconds :" + product.levels.shortData[i].seconds;
+                            
+                            span.textContent = "[" + i + "]" + str;
+                            document.body.appendChild(span);
+                            document.body.appendChild(br);
+
+
+                        }
+                        
                     }
                 })
                 .catch(console.error);
