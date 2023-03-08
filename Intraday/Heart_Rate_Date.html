@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet">
+    <title>Fitbit</title>
+</head>
+
+<body>
+    <h1 class="fitbit" id="title">FitBit API Test22</h1>
+
+    <nav class="primary-nav">
+        <ul>
+            <!-- <li class="menu-item current"><a href="/">Home</a></li> -->
+        </ul>
+
+        <script>
+            const myList = document.querySelector("ul");
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4MjYyMjUwLCJpYXQiOjE2NzgyMzM0NTB9.k4gKXRqpj1wZgWehx5Cd12BIg_QwbpGzbNDWg8fhVU0"
+            const aaa = document.getElementById("aaa");
+            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/today/1d/1sec/time/09:00/22:00.json', {
+                method: "GET",
+                headers: { "Authorization": "Bearer " + access_token },
+            })
+                .then(response => response.json())
+                .then((data) => {
+                    for (var product of data.hrv) {
+                        const brr = document.createElement("br");
+                        console.log(product.minutes);
+                        console.log("len : " + product.minutes.length);
+                        for (var i = 0; i < product.minutes.length; i++) {
+                            const span = document.createElement("span");
+                            const br = document.createElement("br");
+                            var str = "";
+                            /*                            console.log(product.minutes[i]);
+                                                        console.log("min : "+product.minutes[i].minute);
+                                                        console.log("value : "+product.minutes[i].value);
+                                                        console.log("rmssd : "+product.minutes[i].value.rmssd);
+                                                        console.log("coverage : "+product.minutes[i].value.coverage);
+                                                        console.log("hf : "+product.minutes[i].value.hf);
+                                                        console.log("lf : "+product.minutes[i].value.lf);*/
+                            str += "rmssd : " + product.minutes[i].value.rmssd;
+                            str += " coverage : " + product.minutes[i].value.coverage
+                            str += " hf : " + product.minutes[i].value.hf
+                            str += " lf : " + product.minutes[i].value.lf
+
+                            span.textContent = "[" + i + "]" + str;
+                            document.body.appendChild(span);
+                            document.body.appendChild(br);
+
+                        }
+                        document.body.appendChild(brr);
+
+
+
+                    }
+                })
+                .catch(console.error);
+
+        </script>
+</body>
+
+</html>
