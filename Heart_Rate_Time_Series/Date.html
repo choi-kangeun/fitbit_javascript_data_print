@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1 class="fitbit" id="title">FitBit API Test</h1>
+    <h1 class="fitbit" id="title">Get Heart Rate Time Series by Date</h1>
 
     <nav class="primary-nav">
         <ul>
@@ -21,15 +21,15 @@
             const myList = document.querySelector("ul");
             const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJyZXMgcmxvYyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4MzQ4NTA5LCJpYXQiOjE2NzgzMTk3MDl9.tUNFHfAAslMp3yOI2-CcIrUoHpYM2mf8pjyOibiS6SE"
             const aaa = document.getElementById("aaa");
-            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/today/1d.json', {
+            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/2023-03-02/1d.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
             })
                 .then(response => response.json())
                 .then((data) => {
+                    // dateTime 값 출력
                     for (var product of data["activities-heart"]) {
                         const brr = document.createElement("br");
-                        console.log(product);
                         //console.log("len : " + product.length);
                         //for (var i = 0; i < product.value.heartRateZones.length; i++) {
                         const span = document.createElement("span");
@@ -43,21 +43,44 @@
                                                     console.log("hf : "+product.minutes[i].value.hf);
                                                     console.log("lf : "+product.minutes[i].value.lf);*/
                         str += "dateTime : " + product.dateTime;
-
+                        //str += "heartRateZones : " + product.value.heartRateZones
                         span.textContent = str;
                         document.body.appendChild(span);
                         document.body.appendChild(br);
                         //}
                         document.body.appendChild(brr);
                     }
-                    for (const i = 0; i < product.value.heatRateZones.length; i++) {
+                    // heartRateZones 값 출력
+                    for (var product2 of data["activities-heart"]) {
+                        const brr2 = document.createElement("br");
+                        for (var i = 0; i < product2.value.heartRateZones.length; i++) {
+                            const span2 = document.createElement("span");
+                            const br2 = document.createElement("br");
+                            var str2 = "";
+                            str2 += "caloriesOut : " + product2.value.heartRateZones[i].caloriesOut;
+                            str2 += " max : " + product2.value.heartRateZones[i].max;
+                            str2 += " min : " + product2.value.heartRateZones[i].min;
+                            str2 += " minutes : " + product2.value.heartRateZones[i].minutes;
+                            str2 += " name : " + product2.value.heartRateZones[i].name;
+                            span2.textContent = str2;
+                            document.body.appendChild(span2);
+                            document.body.appendChild(br2);
+                            document.body.appendChild(brr2);
+                        }
+                        // restingHeartRate 값 출력
                         const span = document.createElement("span");
                         const br = document.createElement("br");
-                        const str = "";
-                        str += "heatRateZones : " + product.value.heatRateZones[i]
-                        span.textContent = "[" + "]" + str;
+                        var str = "";
+                        str += "restingHeartRate : " + product2.value.restingHeartRate;
+                        span.textContent = str;
                         document.body.appendChild(span);
                         document.body.appendChild(br);
+                        document.body.appendChild(brr2);
+                    }
+                    // dataset 값 출력
+                    for (var product of data["activities-heart-intraday"]) {
+
+
                     }
                 })
                 .catch(console.error);
