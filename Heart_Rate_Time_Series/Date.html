@@ -62,7 +62,7 @@
                             str2 += " min : " + product2.value.heartRateZones[i].min;
                             str2 += " minutes : " + product2.value.heartRateZones[i].minutes;
                             str2 += " name : " + product2.value.heartRateZones[i].name;
-                            span2.textContent = str2;
+                            span2.textContent = "[" + i + "]" + str2;
                             document.body.appendChild(span2);
                             document.body.appendChild(br2);
                             document.body.appendChild(brr2);
@@ -78,10 +78,29 @@
                         document.body.appendChild(brr2);
                     }
                     // dataset 값 출력
-                    for (var product of data["activities-heart-intraday"]) {
-
-
+                    for (var product of data["activities-heart-intraday"].dataset) {
+                        const brr = document.createElement("br");
+                        const span = document.createElement("span");
+                        const br = document.createElement("br");
+                        var str = "";
+                        str += "time : " + product.time;
+                        str += " value :" + product.value;
+                        span.textContent = str;
+                        document.body.appendChild(span);
+                        document.body.appendChild(br);
+                        document.body.appendChild(brr);
                     }
+                    // datasetInterval 값 출력
+                    const brr = document.createElement("br");
+                    const span = document.createElement("span");
+                        const br = document.createElement("br");
+                        var str = "";
+                        str += "datasetInterval : " + data["activities-heart-intraday"].datasetInterval;
+                        str += " datasetType : " + data["activities-heart-intraday"].datasetType;
+                        span.textContent = str;
+                        document.body.appendChild(span);
+                        document.body.appendChild(br);
+                        document.body.appendChild(brr);
                 })
                 .catch(console.error);
 
