@@ -19,39 +19,36 @@
 
         <script>
             const myList = document.querySelector("ul");
-            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJyZXMgcmxvYyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4MjkxMTkzLCJpYXQiOjE2NzgyNjIzOTN9.Id4LLZv-WSqHBCs4LBlOApSS_LFLd4zIIilb91XIDH8"
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4NDM0OTkwLCJpYXQiOjE2Nzg0MDYxOTB9.-OHjgNPZHYaI129xTeXuLS52v29_Ez115Wr-ARYKwFU"
             const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/2023-02-27/2023-03-06.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
             })
                 .then(response => response.json())
                 .then((data) => {
-                    for (var product of data.activities-heart) {
+                    // value 값 출력
+                    for (var product of data["activities-heart"]) {
                         const brr = document.createElement("br");
-                        console.log(product.value);
-                        //console.log("len : " + product.value.length);
-                        //for (var i = 0; i < product.dateTime.length; i++) {
+                        const span = document.createElement("span");
+                        const br = document.createElement("br");
+                        var str = "";
+                        str += "dateTime : " + product.dateTime;
+                        str += " value : " + product.value.heartRateZones;
+                        span.textContent = str;
+                        document.body.appendChild(span);
+                        document.body.appendChild(br);
+                        document.body.appendChild(brr);
+                        for (var i = 0; i < product.value.heartRateZones.caloriesOut; i++) {
+                            const brr = document.createElement("br");
                             const span = document.createElement("span");
                             const br = document.createElement("br");
                             var str = "";
-                            /*                            console.log(product.minutes[i]);
-                                                        console.log("min : "+product.minutes[i].minute);
-                                                        console.log("value : "+product.minutes[i].value);
-                                                        console.log("rmssd : "+product.minutes[i].value.rmssd);
-                                                        console.log("coverage : "+product.minutes[i].value.coverage);
-                                                        console.log("hf : "+product.minutes[i].value.hf);
-                                                        console.log("lf : "+product.minutes[i].value.lf);*/
-                            str += "rmssd : " + product.value.heartRateZones.caloriesOut;
-                            str += " coverage : " + product.value.restingHeartRate
-                            //str += " hf : " + product.value.hf
-                            //str += " lf : " + product.value.lf
-
+                            str += "? : " + product.value.heartRateZones[i].caloriesOut;
                             span.textContent = str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
-
-                        //}
-                        document.body.appendChild(brr);
+                            document.body.appendChild(brr);
+                        }
 
 
 
