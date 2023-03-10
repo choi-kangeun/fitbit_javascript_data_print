@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet">
+    <title>Fitbit</title>
+</head>
+
+<body>
+    <h1 class="fitbit" id="title">Get Activity Time Series by Date</h1>
+
+    <nav class="primary-nav">
+        <ul>
+            <!-- <li class="menu-item current"><a href="/">Home</a></li> -->
+        </ul>
+
+        <script>
+            const myList = document.querySelector("ul");
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4NDYzNDAwLCJpYXQiOjE2Nzg0MzQ2MDB9.TahNNwoGw2RELlZ7fjLLlPlI72KUKVH1FKgGRjg0N7w"
+            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/steps/date/2023-03-05/7d.json', {
+                method: "GET",
+                headers: { "Authorization": "Bearer " + access_token },
+            })
+                .then(response => response.json())
+                .then((data) => {
+                    // value 값 출력
+                    for (var product of data["activities-steps"]) {
+                        const brr = document.createElement("br");
+                        const span = document.createElement("span");
+                        const br = document.createElement("br");
+                        var str = "";
+                        str += "dateTime : " + product.dateTime;
+                        str += " value : " + product.value;
+                        span.textContent = str;
+                        document.body.appendChild(span);
+                        document.body.appendChild(br);
+                        document.body.appendChild(brr);
+                        //for (var i = 0; i < product.value; i++) {
+                            //const brr = document.createElement("br");
+                            //const span = document.createElement("span");
+                            //const br = document.createElement("br");
+                            //var str = "";
+                            //str += "? : " + product.value[i];
+                            //span.textContent = str;
+                            //document.body.appendChild(span);
+                            //document.body.appendChild(br);
+                            //document.body.appendChild(brr);
+                        //}
+
+
+
+                    }
+                })
+                .catch(console.error);
+
+        </script>
+</body>
+
+</html>
