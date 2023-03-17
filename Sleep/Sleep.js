@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+import { access_token } from './token.js';
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet">
-    <title>Fitbit</title>
-</head>
-
-<body>
-    <h1 class="fitbit" id="title">Get Sleep Log by Date</h1>
-
-    <nav class="primary-nav">
-        <ul>
-            <!-- <li class="menu-item current"><a href="/">Home</a></li> -->
-        </ul>
-
-        <script>
-            const myList = document.querySelector("ul");
-            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MDQwOTUwLCJpYXQiOjE2NzkwMTIxNTB9.EqcJfnjLVGzXFEqWbRR2GMPiLpL1syvyfwwixBjdiaw"
+const myList = document.querySelector("ul");
             const aaa = document.getElementById("aaa");
-            const json_data = fetch('https://api.fitbit.com/1.2/user/-/sleep/date/2023-03-02.json', {
+            const json_data = fetch('https://api.fitbit.com/1.2/user/-/sleep/date/2023-03-05.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
             })
@@ -99,8 +80,3 @@
                     }
                 })
                 .catch(console.error);
-
-        </script>
-</body>
-
-</html>
