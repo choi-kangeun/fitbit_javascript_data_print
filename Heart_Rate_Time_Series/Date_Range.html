@@ -19,8 +19,8 @@
 
         <script>
             const myList = document.querySelector("ul");
-            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc4NDM0OTkwLCJpYXQiOjE2Nzg0MDYxOTB9.-OHjgNPZHYaI129xTeXuLS52v29_Ez115Wr-ARYKwFU"
-            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/2023-02-27/2023-03-06.json', {
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MDQwOTUwLCJpYXQiOjE2NzkwMTIxNTB9.EqcJfnjLVGzXFEqWbRR2GMPiLpL1syvyfwwixBjdiaw"
+            const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/2023-02-27/2023-03-17.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
             })
@@ -28,6 +28,7 @@
                 .then((data) => {
                     // value 값 출력
                     for (var product of data["activities-heart"]) {
+                        console.log(product);
                         const brr = document.createElement("br");
                         const span = document.createElement("span");
                         const br = document.createElement("br");
