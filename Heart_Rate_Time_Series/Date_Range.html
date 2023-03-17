@@ -19,40 +19,35 @@
 
         <script>
             const myList = document.querySelector("ul");
-            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MDQwOTUwLCJpYXQiOjE2NzkwMTIxNTB9.EqcJfnjLVGzXFEqWbRR2GMPiLpL1syvyfwwixBjdiaw"
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJyZXMgcmxvYyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MDcwMDM5LCJpYXQiOjE2NzkwNDEyMzl9.kb8xOVdYdgtcv1T2PxO47PBd7Zt9eanGCX1KoxVeRWc"
             const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/2023-02-27/2023-03-17.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
             })
                 .then(response => response.json())
                 .then((data) => {
-                    // value 값 출력
                     for (var product of data["activities-heart"]) {
-                        console.log(product);
                         const brr = document.createElement("br");
-                        const span = document.createElement("span");
-                        const br = document.createElement("br");
-                        var str = "";
-                        str += "dateTime : " + product.dateTime;
-                        str += " value : " + product.value.heartRateZones;
-                        span.textContent = str;
-                        document.body.appendChild(span);
-                        document.body.appendChild(br);
-                        document.body.appendChild(brr);
-                        for (var i = 0; i < product.value.heartRateZones.caloriesOut; i++) {
-                            const brr = document.createElement("br");
+                        const dateTxt = document.createElement("p");
+                        var str2 = "";
+                        str2 += "dateTime : " + product.dateTime;
+                        str2 += " restingHeartRate : " + product.value.restingHeartRate;
+                        dateTxt.textContent = str2;
+                        document.body.appendChild(dateTxt);
+                        console.log(product);
+                        for (var i = 0; i < product.value.heartRateZones.length; i++) {
                             const span = document.createElement("span");
                             const br = document.createElement("br");
                             var str = "";
-                            str += "? : " + product.value.heartRateZones[i].caloriesOut;
+                            str += " caloriesOut : " + product.value.heartRateZones[i].caloriesOut;
+                            str += " max : " + product.value.heartRateZones[i].max;
+                            str += " min : " + product.value.heartRateZones[i].min;
+                            str += " minutes : " + product.value.heartRateZones[i].minutes;
+                            str += " name : " + product.value.heartRateZones[i].name;
                             span.textContent = str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
-                            document.body.appendChild(brr);
                         }
-
-
-
                     }
                 })
                 .catch(console.error);
