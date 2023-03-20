@@ -1,22 +1,66 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet">
-        <title>Fitbit</title>
-    </head>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet">
+    <title>Fitbit</title>
+</head>
+
 <body>
-    <h1>Get Sleep Log by Date</h1>
-    <script type="module" src="Sleep.js"></script>
-    <div class="sidebar">
+    <h1 class="fitbit" id="title">Get Sleep Log by Date Range</h1>
+
+    <nav class="primary-nav">
         <ul>
-          <li><a href="/fitbit/Steps.html">걸음 수</a></li>
-          <li><a href="/fitbit/HRV.html">심박변이</a></li>
-          <li><a href="/fitbitSleep.html">수면</a></li>
+            <!-- <li class="menu-item current"><a href="/">Home</a></li> -->
         </ul>
-      </div>
+
+        <script>
+            const myList = document.querySelector("ul");
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MzAyNzM0LCJpYXQiOjE2NzkyNzM5MzR9.ZVjqbB7otjn3CaGADtKa-8TpmzaormrS4QHJN4nJopU"
+            const aaa = document.getElementById("aaa");
+            const json_data = fetch('https://api.fitbit.com/1.2/user/-/sleep/date/2023-03-20.json', {
+                method: "GET",
+                headers: { "Authorization": "Bearer " + access_token },
+            })
+                .then(response => response.json())
+                .then((data) => {
+                    for (var product of data.sleep) {
+                        console.log(product);
+                        const brr = document.createElement("br");
+                        const span = document.createElement("span");
+                        const br = document.createElement("br");
+                        var str = "";
+                        str += "dateOfSleep : " + product.dateOfSleep;
+                        str += " duration : " + product.duration;
+                        str += " efficiency : " + product.efficiency;
+                        str += " endTime " + product.endTime;
+                        str += " infoCode : " + product.infoCode;
+                        str += " isMainSleep : " + product.isMainSleep;
+                        span.textContent = str;
+                        document.body.appendChild(span);
+                        document.body.appendChild(br);
+                        document.body.appendChild(brr);
+                        for (var i = 0; i < product.levels.data.length; i++) {
+                            const br3 = document.createElement("br");
+                            const span2 = document.createElement("span");
+                            const br2 = document.createElement("br");
+                            var str2 = "";
+                            str2 += "dateTime : " + product.levels.data[i].dateTime;
+                            str2 += " level : " + product.levels.data[i].level;
+                            str2 += " seconds : " + product.levels.data[i].seconds;
+                            span2.textContent = str2;
+                            document.body.appendChild(span2);
+                            document.body.appendChild(br2);
+                            document.body.appendChild(br3);
+                        }
+                    }
+                })
+                .catch(console.error);
+
+        </script>
 </body>
 
 </html>

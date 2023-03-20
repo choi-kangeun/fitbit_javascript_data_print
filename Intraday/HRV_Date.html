@@ -19,7 +19,7 @@
 
         <script>
             const myList = document.querySelector("ul");
-            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MDQwOTUwLCJpYXQiOjE2NzkwMTIxNTB9.EqcJfnjLVGzXFEqWbRR2GMPiLpL1syvyfwwixBjdiaw"
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MzAyNzM0LCJpYXQiOjE2NzkyNzM5MzR9.ZVjqbB7otjn3CaGADtKa-8TpmzaormrS4QHJN4nJopU"
             const json_data = fetch('https://api.fitbit.com/1/user/-/hrv/date/2023-03-16/all.json', {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + access_token },
@@ -33,7 +33,6 @@
                         const br = document.createElement("br");
                         var str = "";
                         str += "dateTime : " + product.dateTime;
-
                         span.textContent = str;
                         document.body.appendChild(span);
                         document.body.appendChild(br);
@@ -47,10 +46,10 @@
                             const br = document.createElement("br");
                             var str = "";
                             str += "minutes : " + product.minutes[i].minute;
+                            str += " rmssd : " + product.minutes[i].value.rmssd;
                             str += " coverage : " + product.minutes[i].value.coverage;
                             str += " hf : " + product.minutes[i].value.hf;
                             str += " lf : " + product.minutes[i].value.lf;
-                            str += " rmssd : " + product.minutes[i].value.rmssd;
                             span.textContent = str;
                             document.body.appendChild(span);
                             document.body.appendChild(br);

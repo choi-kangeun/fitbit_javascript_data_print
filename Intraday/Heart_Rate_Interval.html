@@ -19,7 +19,7 @@
 
         <script>
             const myList = document.querySelector("ul");
-            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJwcm8gcm51dCByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MDQwOTUwLCJpYXQiOjE2NzkwMTIxNTB9.EqcJfnjLVGzXFEqWbRR2GMPiLpL1syvyfwwixBjdiaw"
+            const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk2WVkiLCJzdWIiOiJCR0hRWDQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByb3h5IHJudXQgcnBybyByc2xlIHJjZiByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc5MzAyNzM0LCJpYXQiOjE2NzkyNzM5MzR9.ZVjqbB7otjn3CaGADtKa-8TpmzaormrS4QHJN4nJopU"
             const aaa = document.getElementById("aaa");
             const json_data = fetch('https://api.fitbit.com/1/user/-/activities/heart/date/2023-02-27/2023-03-03/1min.json', {
                 method: "GET",
@@ -27,35 +27,29 @@
             })
                 .then(response => response.json())
                 .then((data) => {
-                    for (var product of data.hrv) {
+                    for (var product of data["activities-heart"]) {
+                        console.log(product);
                         const brr = document.createElement("br");
-                        console.log(product.minutes);
-                        console.log("len : " + product.minutes.length);
-                        for (var i = 0; i < product.minutes.length; i++) {
+                        const dateTxt = document.createElement("p");
+                        var str = "";
+                        str += "dateTime : " + product.dateTime;
+                        str += " restingHeartRate : " + product.value.restingHeartRate;
+                        dateTxt.textContent = str;
+                        document.body.appendChild(dateTxt);
+                        for (var i = 0; i < product.value.heartRateZones.length; i++) {
                             const span = document.createElement("span");
                             const br = document.createElement("br");
-                            var str = "";
-                            /*                            console.log(product.minutes[i]);
-                                                        console.log("min : "+product.minutes[i].minute);
-                                                        console.log("value : "+product.minutes[i].value);
-                                                        console.log("rmssd : "+product.minutes[i].value.rmssd);
-                                                        console.log("coverage : "+product.minutes[i].value.coverage);
-                                                        console.log("hf : "+product.minutes[i].value.hf);
-                                                        console.log("lf : "+product.minutes[i].value.lf);*/
-                            str += "rmssd : " + product.minutes[i].value.rmssd;
-                            str += " coverage : " + product.minutes[i].value.coverage
-                            str += " hf : " + product.minutes[i].value.hf
-                            str += " lf : " + product.minutes[i].value.lf
-
-                            span.textContent = "[" + i + "]" + str;
+                            var str2 = "";
+                            str2 += "caloriesOut : " + product.value.heartRateZones[i].caloriesOut;
+                            str2 += " max : " + product.value.heartRateZones[i].max;
+                            str2 += " min : " + product.value.heartRateZones[i].min;
+                            str2 += " minutes : " + product.value.heartRateZones[i].minutes;
+                            str2 += " name : " + product.value.heartRateZones[i].name;
+                            span.textContent = str2;
                             document.body.appendChild(span);
                             document.body.appendChild(br);
 
                         }
-                        document.body.appendChild(brr);
-
-
-
                     }
                 })
                 .catch(console.error);
